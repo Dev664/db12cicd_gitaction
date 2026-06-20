@@ -10,7 +10,6 @@ jobs:
 build-deploy:
 runs-on: self-hosted
 
-```
 steps:
 
 - name: Checkout Source Code
