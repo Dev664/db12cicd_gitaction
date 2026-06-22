@@ -10,7 +10,6 @@ jobs:
 build-deploy:
 runs-on: self-hosted
 
-```
 steps:
   - name: Checkout Source Code
     uses: actions/checkout@v4
@@ -40,12 +39,8 @@ steps:
 
   - name: Deploy Application
     run: |
-      echo "Applying Kubernetes manifests..."
-
       kubectl apply -f deployment.yaml
       kubectl apply -f service.yaml
-
-      echo "Updating deployment image..."
 
       kubectl set image deployment/flask-deployment \
       flask=$IMAGE_NAME:$TAG
@@ -56,15 +51,6 @@ steps:
 
   - name: Verify Deployment
     run: |
-      echo "===== Deployments ====="
       kubectl get deployment
-
-      echo "===== Pods ====="
       kubectl get pods -o wide
-
-      echo "===== Services ====="
       kubectl get svc
-
-      echo "===== Images ====="
-      kubectl describe deployment flask-deployment | grep Image
-```
