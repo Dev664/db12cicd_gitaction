@@ -75,4 +75,3 @@ steps:
 
     echo "===== Images ====="
     kubectl describe deployment flask-deployment | grep Image
-```
