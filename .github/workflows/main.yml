@@ -40,5 +40,8 @@ jobs:
 
     - name: Deploy to Kubernetes
       run: |
+        kubectl apply -f deployment.yaml
+        kubectl apply -f service.yaml
         kubectl set image deployment/flask-deployment \
         flask=$IMAGE_NAME:$TAG
+        kubectl rollout status deployment/flask-deployment --timeout=300s
